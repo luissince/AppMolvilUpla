@@ -1,20 +1,17 @@
 import 'dart:async';
 import 'dart:convert' as convert;
-import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/components/activity_indicator.dart';
 import 'package:flutter_demo/model/Pagos.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter_demo/redux/actions_user.dart';
 import 'package:flutter_demo/redux/app_state.dart';
 import 'package:flutter_demo/redux/studen.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../util/exercise_tile.dart';
+import 'package:flutter_demo/constants.dart';
 
 class PageTwo extends StatefulWidget {
   final Store<AppState> store;
@@ -43,201 +40,183 @@ class _PageTwoState extends State<PageTwo> {
   @override
   Widget build(BuildContext context) {
     // print(widget.store.state.student.token);
+    Size size = MediaQuery.of(context).size;
     return RefreshIndicator(
       onRefresh: () async {
         loadCuotasPensiones();
       },
       child: SingleChildScrollView(
         child: IntrinsicHeight(
-          child: Column(
-            children: [
-              Container(
-                decoration:
-                    const BoxDecoration(color: Color.fromRGBO(0, 125, 188, 1)),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(left: 25.0, right: 25, top: 10),
-                  child: Column(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //TITULO
+                Container(
+                  margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10, top: 20, bottom: 20),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          //Text widget
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              StoreConnector<AppState, Student>(
-                                  builder: (context, studen) {
-                                    return Text(
-                                      "Hi, ${studen.persNombre}",
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    );
-                                  },
-                                  converter: (store) => store.state.student),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              StoreConnector<AppState, Student>(
-                                converter: (store) => store.state.student,
-                                builder: (context, student) {
-                                  return Text(
-                                    student.docNumId,
-                                    style: const TextStyle(
-                                      color: Colors.white70,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
+                      SvgPicture.asset(
+                        "assets/images/logo_only.svg",
+                        height: size.height * 0.12,
+                      ),
+                      Column(
+                        children: const [
+                          Text(
+                            "UNIVERSIDAD",
+                            style: TextStyle(
+                                color: kPrimaryColor,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold),
                           ),
-
-                          //Icon widget
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.transparent,
-                              // borderRadius: BorderRadius.circular(12),
-                            ),
-                            // padding: const EdgeInsets.all(12),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                closeSession();
-                              },
-                              style: ElevatedButton.styleFrom(
-                                primary: const Color.fromARGB(255, 0, 109, 163),
-                                shadowColor: Colors.transparent,
-                                padding: const EdgeInsets.all(12),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                              ),
-                              child: const Icon(
-                                Icons.power_settings_new,
-                                color: Colors.white,
-                              ),
-                            ),
+                          Text(
+                            "PERUANA LOS ANDES",
+                            style: TextStyle(
+                                color: kPrimaryColor,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
-
-                      const SizedBox(
-                        height: 25,
-                      ),
-
-                      //Search widget
-
-                      Container(
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 0, 109, 163),
-                            borderRadius: BorderRadius.circular(12)),
-                        child: TextField(
-                          style: const TextStyle(color: Colors.white),
-                          onChanged: (text) {
-                            // print("text: $text");
-                          },
-                          decoration: const InputDecoration(
-                              // labelStyle: TextStyle(color: Colors.white),
-                              prefixIcon:
-                                  Icon(Icons.search, color: Colors.white),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none),
-                              semanticCounterText: "12323",
-                              hintText: 'Enter a search term',
-                              hintStyle: TextStyle(
-                                  color: Color.fromRGBO(255, 255, 255, .5))),
+                      ElevatedButton(
+                        onPressed: () {
+                          closeSession();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: kPrimaryColor,
+                          shadowColor: Colors.transparent,
+                          padding: const EdgeInsets.only(top: 10, bottom: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
-                      ),
-
-                      const SizedBox(
-                        height: 25,
+                        child: const Icon(
+                          Icons.power_settings_new,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              Container(
-                decoration:
-                    const BoxDecoration(color: Color.fromRGBO(0, 125, 188, 1)),
-                child: Column(
-                  children: [
-                    Container(
-                      padding:
-                          const EdgeInsets.only(left: 25, right: 25, top: 25),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
-                        ),
-                      ),
-                      child: Center(
-                        child: Column(
-                          children: [
-                            //Consultant
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                //SELECCIÓN ALUMNO
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
+                    "CONSULTA DE ESTADO DE DEUDA",
+                    style: TextStyle(
+                        color: Color.fromRGBO(155, 166, 175, 1),
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  height: 300,
+                  margin: const EdgeInsets.only(left: 10, right: 10),
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.lightBlue[100],
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
                               children: const [
-                                Flexible(
-                                  flex: 2,
-                                  child: Text(
-                                    "CUOTAS DE PENSIÓN ACADÉMICA",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
+                                Text(
+                                  "Upcomming",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12),
                                 ),
-                                Flexible(
-                                  flex: 1,
-                                  child: Icon(Icons.more_horiz),
+                                SizedBox(
+                                  height: 5,
                                 ),
+                                Text(
+                                  "4",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "exams",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12),
+                                )
                               ],
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            loading
-                                ? const ActivityIndicator()
-                                : Column(
-                                    children: listPagos
-                                        .map(
-                                          (pago) => ExerciseTile(
-                                            icon: Icons.info,
-                                            exerciseName: pago.descripcion,
-                                            fechaVencimiento: pago.fecVenc,
-                                            simbolo: pago.tm,
-                                            importe: pago.importe,
-                                            mora: pago.mora,
-                                            subtotal: pago.subtotal,
-                                            color: Colors.orange,
-                                          ),
-                                        )
-                                        .toList(),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                color: Colors.orange,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
+                                const Text(
+                                  "Homework",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.all(20),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        width: 1, color: Colors.white),
                                   ),
-
-                            //lista de consultas
-
-                            // listPagos.map((e) => Text("data")).toList(),
-                            // const ExerciseTile(
-                            //   icon: Icons.info,
-                            //   exerciseName: 'CUOTA 01 Periodo 2022-1',
-                            //   fechaVencimiento: "qweqwe",
-                            //   simbolo: 'S/',
-                            //   importe: 0,
-                            //   mora: 0,
-                            //   total: 0,
-                            //   color: Colors.orange,
-                            // ),
-                          ],
-                        ),
+                                  child: const Text(
+                                    "73%",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 24),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                const Text(
+                                  "completed",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
         ),
       ),
