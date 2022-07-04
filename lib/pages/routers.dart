@@ -16,7 +16,7 @@ class Routers extends StatelessWidget {
     List<Widget> myList = [
       PageOne(store: store),
       PageTwo(store: store),
-      const PageTree()
+      PageTree(store: store)
     ];
 
     return myList[index];

@@ -8,11 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/redux/actions_user.dart';
 import 'package:flutter_demo/redux/app_state.dart';
 import 'package:flutter_demo/redux/studen.dart';
-import 'package:flutter_demo/util/emoticon_face.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../util/exercise_tile.dart';
 import 'package:flutter_demo/constants.dart';
 
 class PageOne extends StatefulWidget {
@@ -59,47 +57,91 @@ class _PageOneState extends State<PageOne> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        "assets/images/logo_only.svg",
-                        height: size.height * 0.12,
-                      ),
-                      Column(
-                        children: const [
-                          Text(
-                            "UNIVERSIDAD",
-                            style: TextStyle(
-                                color: kPrimaryColor,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            "assets/images/logo_only.svg",
+                            height: size.height * 0.14,
                           ),
-                          Text(
-                            "PERUANA LOS ANDES",
-                            style: TextStyle(
-                                color: kPrimaryColor,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Text(
+                                    "U",
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 34),
+                                  ),
+                                  SizedBox(
+                                    width: 13,
+                                  ),
+                                  Text(
+                                    "P",
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 34),
+                                  ),
+                                  SizedBox(
+                                    width: 13,
+                                  ),
+                                  Text(
+                                    "L",
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 34),
+                                  ),
+                                  SizedBox(
+                                    width: 13,
+                                  ),
+                                  Text(
+                                    "A",
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 34),
+                                  ),
+                                ],
+                              ),
+                              const Text(
+                                "UNIVERSIDAD PERUANA LOS ANDES",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  color: kPrimaryColor,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 7,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          closeSession();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: kPrimaryColor,
-                          shadowColor: Colors.transparent,
-                          padding: const EdgeInsets.only(top: 10, bottom: 10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: const Icon(
-                          Icons.power_settings_new,
-                          color: Colors.white,
-                        ),
-                      ),
+                      // ElevatedButton(
+                      //   onPressed: () {
+                      //     closeSession();
+                      //   },
+                      //   style: ElevatedButton.styleFrom(
+                      //     primary: kPrimaryColor,
+                      //     shadowColor: Colors.transparent,
+                      //     padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      //     shape: RoundedRectangleBorder(
+                      //       borderRadius: BorderRadius.circular(12),
+                      //     ),
+                      //   ),
+                      //   child: const Icon(
+                      //     Icons.power_settings_new,
+                      //     color: Colors.white,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -110,8 +152,10 @@ class _PageOneState extends State<PageOne> {
                   child: const Text(
                     "INFORMACIÓN",
                     style: TextStyle(
-                        color: Color.fromRGBO(155, 166, 175, 1),
-                        fontWeight: FontWeight.bold),
+                      color: Color.fromARGB(255, 126, 137, 147),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
 
@@ -132,6 +176,7 @@ class _PageOneState extends State<PageOne> {
                               "ESTUDIANTE",
                               style: TextStyle(
                                 color: Color.fromRGBO(155, 166, 175, 1),
+                                fontSize: 13,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -144,7 +189,8 @@ class _PageOneState extends State<PageOne> {
                                     "Hi, ${studen.persNombre}",
                                     style: const TextStyle(
                                       color: Color.fromRGBO(21, 23, 83, 1),
-                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   );
                                 },
@@ -163,6 +209,7 @@ class _PageOneState extends State<PageOne> {
                               "PLAN DE ESTUDIOS",
                               style: TextStyle(
                                 color: Color.fromRGBO(155, 166, 175, 1),
+                                fontSize: 13,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -173,7 +220,8 @@ class _PageOneState extends State<PageOne> {
                               plan,
                               style: const TextStyle(
                                 color: Color.fromRGBO(21, 23, 83, 1),
-                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ),
@@ -190,6 +238,7 @@ class _PageOneState extends State<PageOne> {
                               "FACULTAD",
                               style: TextStyle(
                                 color: Color.fromRGBO(155, 166, 175, 1),
+                                fontSize: 13,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -200,7 +249,8 @@ class _PageOneState extends State<PageOne> {
                               facultad,
                               style: const TextStyle(
                                 color: Color.fromRGBO(21, 23, 83, 1),
-                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ),
@@ -217,6 +267,7 @@ class _PageOneState extends State<PageOne> {
                               "CARR./ ESP",
                               style: TextStyle(
                                 color: Color.fromRGBO(155, 166, 175, 1),
+                                fontSize: 13,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -227,7 +278,8 @@ class _PageOneState extends State<PageOne> {
                               carrera,
                               style: const TextStyle(
                                 color: Color.fromRGBO(21, 23, 83, 1),
-                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ),
@@ -243,8 +295,10 @@ class _PageOneState extends State<PageOne> {
                   child: const Text(
                     "CLASES ACTUALES",
                     style: TextStyle(
-                        color: Color.fromRGBO(155, 166, 175, 1),
-                        fontWeight: FontWeight.bold),
+                      color: Color.fromARGB(255, 126, 137, 147),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
 
@@ -373,8 +427,10 @@ class _PageOneState extends State<PageOne> {
                   child: const Text(
                     "DASHBOARD",
                     style: TextStyle(
-                        color: Color.fromRGBO(155, 166, 175, 1),
-                        fontWeight: FontWeight.bold),
+                      color: Color.fromARGB(255, 126, 137, 147),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
 
@@ -384,7 +440,7 @@ class _PageOneState extends State<PageOne> {
                   child: Row(
                     children: [
                       Container(
-                        width: 100,
+                        width: 120,
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -420,7 +476,7 @@ class _PageOneState extends State<PageOne> {
                                 )
                               ],
                             ),
-                            Text(
+                            const Text(
                               "Notifications",
                               style: TextStyle(color: Colors.black),
                             )
@@ -433,7 +489,7 @@ class _PageOneState extends State<PageOne> {
 
                       //
                       Container(
-                        width: 100,
+                        width: 120,
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -469,7 +525,7 @@ class _PageOneState extends State<PageOne> {
                                 )
                               ],
                             ),
-                            Text(
+                            const Text(
                               "Email",
                               style: TextStyle(color: Colors.black),
                             )
@@ -482,7 +538,7 @@ class _PageOneState extends State<PageOne> {
 
                       //
                       Container(
-                        width: 100,
+                        width: 120,
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -518,7 +574,7 @@ class _PageOneState extends State<PageOne> {
                                 )
                               ],
                             ),
-                            Text(
+                            const Text(
                               "Feedback",
                               style: TextStyle(color: Colors.black),
                             )
@@ -531,7 +587,7 @@ class _PageOneState extends State<PageOne> {
 
                       //
                       Container(
-                        width: 100,
+                        width: 120,
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -567,7 +623,7 @@ class _PageOneState extends State<PageOne> {
                                 )
                               ],
                             ),
-                            Text(
+                            const Text(
                               "Taxi",
                               style: TextStyle(color: Colors.black),
                             )
@@ -587,8 +643,10 @@ class _PageOneState extends State<PageOne> {
                   child: const Text(
                     "EVENTOS",
                     style: TextStyle(
-                        color: Color.fromRGBO(155, 166, 175, 1),
-                        fontWeight: FontWeight.bold),
+                      color: Color.fromARGB(255, 126, 137, 147),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
 

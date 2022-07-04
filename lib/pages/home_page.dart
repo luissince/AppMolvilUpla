@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_demo/constants.dart';
 import 'package:flutter_demo/pages/routers.dart';
 import 'package:flutter_demo/redux/app_state.dart';
 import 'package:redux/redux.dart';
@@ -37,16 +38,18 @@ class HomePageState extends State<HomePage> {
         },
         backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: const Color.fromRGBO(0, 125, 188, 1),
+        selectedItemColor: kPrimaryColor,
         unselectedItemColor: const Color.fromARGB(255, 166, 169, 173),
-        iconSize: 25.0,
-        selectedFontSize: 12.0,
-        unselectedFontSize: 12.0,
+        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w700),
+        unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
+        iconSize: 23.0,
+        selectedFontSize: 13.0,
+        unselectedFontSize: 11.0,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'INICIO'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.account_balance), label: 'Financiero'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil'),
+              icon: Icon(Icons.account_balance), label: 'FINANCIERO'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'PERFIL'),
         ],
       ),
       body: SafeArea(

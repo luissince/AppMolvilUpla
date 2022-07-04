@@ -33,6 +33,7 @@ class RoundedPasswordField extends StatelessWidget {
         onFieldSubmitted: onSubmitted,
         keyboardType: TextInputType.text,
         cursorColor: kPrimaryColor,
+        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
         decoration: InputDecoration(
           hintText: "Contraseña",
           icon: const Icon(

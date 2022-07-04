@@ -14,193 +14,181 @@ class BodyMobile extends StatelessWidget {
     return Background(
       child: SafeArea(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            /**
+             * COMPONENTES PRINCIPALES
+             */
             Expanded(
-              flex: 2,
+              flex: 1,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  /**
+                   * 
+                   */
                   SvgPicture.asset(
                     "assets/icons/chat.svg",
                     height: size.height * 0.45,
                   ),
+                  /**
+                   * 
+                   */
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text(
+                        "U",
+                        style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 34),
+                      ),
+                      SizedBox(
+                        width: 13,
+                      ),
+                      Text(
+                        "P",
+                        style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 34),
+                      ),
+                      SizedBox(
+                        width: 13,
+                      ),
+                      Text(
+                        "L",
+                        style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 34),
+                      ),
+                      SizedBox(
+                        width: 13,
+                      ),
+                      Text(
+                        "A",
+                        style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 34),
+                      ),
+                    ],
+                  ),
+
+                  /**
+                   * 
+                   */
                   const Text(
-                    "UPLA",
-                    textAlign: TextAlign.center,
+                    "UNIVERSIDAD PERUANA LOS ANDES",
+                    textAlign: TextAlign.left,
                     style: TextStyle(
                       color: kPrimaryColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 32,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 7,
                     ),
                   ),
-                  SizedBox(height: size.height * 0.01),
-                  const Text(
-                    "En un sola plataforma",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-                  Container(
-                    width: 80,
-                    height: 5,
-                    decoration: BoxDecoration(
-                        color: kPrimaryColor,
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
+                  /**
+                   * 
+                   */
                   Container(
                     padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: const Text(
-                      "Cualquiera puede unirse a los millones de miembros de nuestra comunidad para aprender habilidades de vanguardia.",
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(top: 15, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Container(
-                  //   width: 15,
-                  //   height: 15,
-                  //   margin: const EdgeInsets.only(left: 5, right: 5),
-                  //   decoration: BoxDecoration(
-                  //     color: kPrimaryColor,
-                  //     borderRadius: BorderRadius.circular(150.0),
-                  //   ),
-                  // ),
-                  Container(
-                    width: 15,
-                    height: 15,
-                    margin: const EdgeInsets.only(left: 5, right: 5),
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent,
-                    ),
-                    child: Stack(
-                      alignment: AlignmentDirectional.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 15,
-                          height: 15,
-                          decoration: BoxDecoration(
-                            color: kPrimaryColor,
-                            borderRadius: BorderRadius.circular(100.0),
+                          padding: const EdgeInsets.only(left: 10),
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              left: BorderSide(color: kPrimaryColor, width: 5),
+                            ),
                           ),
-                        ),
-                        Container(
-                          width: 10,
-                          height: 10,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(100.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: const [
+                                  Text(
+                                    "NUEVOS",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "TIEMPO",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: const [
+                                  Text(
+                                    "NUEVOS",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "DESAFÍOS",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: const [
+                                  Text(
+                                    "NUEVOS",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "COMPROMISOS",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-                        Container(
-                          width: 5,
-                          height: 5,
-                          decoration: BoxDecoration(
-                            color: kPrimaryColor,
-                            borderRadius: BorderRadius.circular(100.0),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 15,
-                    height: 15,
-                    margin: const EdgeInsets.only(left: 5, right: 5),
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent,
-                    ),
-                    child: Stack(
-                      alignment: AlignmentDirectional.center,
-                      children: [
-                        Container(
-                          width: 15,
-                          height: 15,
-                          decoration: BoxDecoration(
-                            color: kPrimaryColor,
-                            borderRadius: BorderRadius.circular(100.0),
-                          ),
-                        ),
-                        Container(
-                          width: 10,
-                          height: 10,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(100.0),
-                          ),
-                        ),
-                        Container(
-                          width: 5,
-                          height: 5,
-                          decoration: BoxDecoration(
-                            color: kPrimaryColor,
-                            borderRadius: BorderRadius.circular(100.0),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 15,
-                    height: 15,
-                    margin: const EdgeInsets.only(left: 5, right: 5),
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent,
-                    ),
-                    child: Stack(
-                      alignment: AlignmentDirectional.center,
-                      children: [
-                        Container(
-                          width: 15,
-                          height: 15,
-                          decoration: BoxDecoration(
-                            color: kPrimaryColor,
-                            borderRadius: BorderRadius.circular(100.0),
-                          ),
-                        ),
-                        Container(
-                          width: 10,
-                          height: 10,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(100.0),
-                          ),
-                        ),
-                        Container(
-                          width: 5,
-                          height: 5,
-                          decoration: BoxDecoration(
-                            color: kPrimaryColor,
-                            borderRadius: BorderRadius.circular(100.0),
-                          ),
-                        ),
+                        )
                       ],
                     ),
                   ),
                 ],
               ),
             ),
+
+            /**
+             * BUTTON PARA CAMBIAR DE PANTALL
+             */
             Container(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: RoundedButton(
-                text: "Iniciar",
+                text: "INICIAR",
                 press: () async {
                   Navigator.pushReplacementNamed(context, "/login");
-                  // Navigator.of(context).pushReplacement(
-                  //   // context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) {
-                  //       return const LoginScreen();
-                  //     },
-                  //   ),
-                  // );
                 },
               ),
             ),

@@ -20,6 +20,9 @@ class BodyDesktop extends StatelessWidget {
           ),
           child: Row(
             children: [
+              /**
+               * 
+               */
               Expanded(
                 flex: 1,
                 child: SvgPicture.asset(
@@ -27,72 +30,175 @@ class BodyDesktop extends StatelessWidget {
                   height: size.height * 0.65,
                 ),
               ),
+
+              /**
+              * 
+              */
               Expanded(
                 flex: 1,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'UPLA',
-                      style: TextStyle(
-                        fontSize: size.height * 0.075,
-                        fontWeight: FontWeight.bold,
-                        color: kPrimaryColor,
-                      ),
-                      textAlign: TextAlign.center,
+                    /**
+                     * 
+                     */
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          "U",
+                          style: TextStyle(
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 34),
+                        ),
+                        SizedBox(
+                          width: 13,
+                        ),
+                        Text(
+                          "P",
+                          style: TextStyle(
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 34),
+                        ),
+                        SizedBox(
+                          width: 13,
+                        ),
+                        Text(
+                          "L",
+                          style: TextStyle(
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 34),
+                        ),
+                        SizedBox(
+                          width: 13,
+                        ),
+                        Text(
+                          "A",
+                          style: TextStyle(
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 34),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: size.height * 0.01),
+                    /**
+                    * 
+                    */
                     const Text(
-                      "En un sola plataforma",
+                      "UNIVERSIDAD PERUANA LOS ANDES",
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 7,
+                      ),
                     ),
-                    SizedBox(height: size.height * 0.01),
-                    Container(
-                      width: 80,
-                      height: 5,
-                      decoration: BoxDecoration(
-                          color: kPrimaryColor,
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
+                    /**
+                    * 
+                    */
                     Container(
                       padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: Text(
-                        "Cualquiera puede unirse a los millones de miembros de nuestra comunidad para aprender habilidades de vanguardia.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: size.height * 0.035,
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.only(left: 10),
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                left:
+                                    BorderSide(color: kPrimaryColor, width: 5),
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: const [
+                                    Text(
+                                      "NUEVOS",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "TIEMPO",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: kPrimaryColor,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: const [
+                                    Text(
+                                      "NUEVOS",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "DESAFÍOS",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: kPrimaryColor,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: const [
+                                    Text(
+                                      "NUEVOS",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "COMPROMISOS",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: kPrimaryColor,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
                     ),
                     SizedBox(
                       height: size.height * 0.05,
                     ),
+
+                    /**
+                     * BUTTON PARA CAMBIAR DE PANTALL
+                     */
                     RoundedButton(
                       text: "INICIAR",
                       press: () {
                         Navigator.pushReplacementNamed(context, "/login");
                       },
-                      height: size.height * 0.097,
+                      height: size.height * 0.13,
                     ),
-                    // RoundedButton(
-                    //   text: "",
-                    //   color: kPrimaryLightColor,
-                    //   textColor: Colors.black,
-                    //   press: () {
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //         builder: (context) {
-                    //           return const SignUpScreen();
-                    //         },
-                    //       ),
-                    //     );
-                    //   },
-                    //   height: size.height * 0.07,
-                    // ),
                   ],
                 ),
               )

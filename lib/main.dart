@@ -77,6 +77,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         title: 'App Upla',
         theme: ThemeData(
+            fontFamily: 'Montserrat',
             // primarySwatch: Colors.blue,
             primaryColor: Colors.black),
         home: SplashScreen(store: store),

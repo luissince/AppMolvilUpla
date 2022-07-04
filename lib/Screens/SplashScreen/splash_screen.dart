@@ -9,6 +9,7 @@ import 'package:flutter_demo/redux/studen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_demo/constants.dart';
 
 class SplashScreen extends StatefulWidget {
   final Store<AppState> store;
@@ -64,13 +65,76 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            /**
+             * 
+             */
             SvgPicture.asset(
-              "assets/images/logo_text.svg",
+              "assets/images/logo_only.svg",
               height: 180,
+            ),
+            /**
+             * 
+             */
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  "U",
+                  style: TextStyle(
+                      color: kPrimaryColor,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 34),
+                ),
+                SizedBox(
+                  width: 13,
+                ),
+                Text(
+                  "P",
+                  style: TextStyle(
+                      color: kPrimaryColor,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 34),
+                ),
+                SizedBox(
+                  width: 13,
+                ),
+                Text(
+                  "L",
+                  style: TextStyle(
+                      color: kPrimaryColor,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 34),
+                ),
+                SizedBox(
+                  width: 13,
+                ),
+                Text(
+                  "A",
+                  style: TextStyle(
+                      color: kPrimaryColor,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 34),
+                ),
+              ],
+            ),
+            /**
+             * 
+             */
+            const Text(
+              "UNIVERSIDAD PERUANA LOS ANDES",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                color: kPrimaryColor,
+                fontWeight: FontWeight.w900,
+                fontSize: 7,
+              ),
             ),
             const SizedBox(
               height: 30,
             ),
+            /**
+             * 
+             */
             if (Platform.isIOS)
               const CupertinoActivityIndicator(
                 radius: 15,

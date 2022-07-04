@@ -3,6 +3,7 @@ import 'dart:convert' as convert;
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_demo/components/activity_indicator.dart';
+import 'package:flutter_demo/constants.dart';
 import 'package:flutter_demo/redux/actions_user.dart';
 import 'package:flutter_demo/redux/app_state.dart';
 import 'package:flutter_demo/redux/studen.dart';
@@ -62,18 +63,93 @@ class _BodyMobileState extends State<BodyMobile> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              /**
+                      * 
+                      */
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    "U",
+                    style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 34),
+                  ),
+                  SizedBox(
+                    width: 13,
+                  ),
+                  Text(
+                    "P",
+                    style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 34),
+                  ),
+                  SizedBox(
+                    width: 13,
+                  ),
+                  Text(
+                    "L",
+                    style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 34),
+                  ),
+                  SizedBox(
+                    width: 13,
+                  ),
+                  Text(
+                    "A",
+                    style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 34),
+                  ),
+                ],
+              ),
+
+              /**
+                      * 
+                      */
+              const Text(
+                "UNIVERSIDAD PERUANA LOS ANDES",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: kPrimaryColor,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 7,
+                ),
+              ),
+              const SizedBox(height: 10),
+              /** 
+               * 
+               */
               const Text(
                 "INICIAR SESIÓN",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 13,
+                ),
               ),
               SizedBox(height: size.height * 0.03),
+              /**
+               * 
+               */
               SvgPicture.asset(
                 "assets/icons/login.svg",
                 height: size.height * 0.30,
               ),
-              SizedBox(height: size.height * 0.03),
+              const SizedBox(height: 10),
+              /**
+               * 
+               */
               loading ? const ActivityIndicator() : const SizedBox(height: 0),
-              SizedBox(height: size.height * 0.03),
+              const SizedBox(height: 10),
+
+              /**
+               * 
+               */
               RoundedInputField(
                   text: codigo,
                   hintText: "Tú código",
@@ -88,6 +164,9 @@ class _BodyMobileState extends State<BodyMobile> {
                     }
                   },
                   myFocusNode: codigoFocus),
+              /**
+               * 
+               */
               RoundedPasswordField(
                 text: clave,
                 obscureText: viewPassword,
@@ -108,25 +187,28 @@ class _BodyMobileState extends State<BodyMobile> {
                   });
                 },
               ),
+              /**
+               * 
+               */
               RoundedButton(
                 text: "INICIAR SESIÓN",
                 press: () async {
                   await login();
                 },
               ),
-              SizedBox(height: size.height * 0.03),
-              AlreadyHaveAnAccountCheck(
-                press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const SignUpScreen();
-                      },
-                    ),
-                  );
-                },
-              ),
+              // SizedBox(height: size.height * 0.03),
+              // AlreadyHaveAnAccountCheck(
+              //   press: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) {
+              //           return const SignUpScreen();
+              //         },
+              //       ),
+              //     );
+              //   },
+              // ),
             ],
           ),
         ),

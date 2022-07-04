@@ -62,47 +62,92 @@ class _PageTwoState extends State<PageTwo> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        "assets/images/logo_only.svg",
-                        height: size.height * 0.12,
-                      ),
-                      Column(
-                        children: const [
-                          Text(
-                            "UNIVERSIDAD",
-                            style: TextStyle(
-                                color: kPrimaryColor,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            "assets/images/logo_only.svg",
+                            height: size.height * 0.14,
                           ),
-                          Text(
-                            "PERUANA LOS ANDES",
-                            style: TextStyle(
-                                color: kPrimaryColor,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Text(
+                                    "U",
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 34),
+                                  ),
+                                  SizedBox(
+                                    width: 13,
+                                  ),
+                                  Text(
+                                    "P",
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 34),
+                                  ),
+                                  SizedBox(
+                                    width: 13,
+                                  ),
+                                  Text(
+                                    "L",
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 34),
+                                  ),
+                                  SizedBox(
+                                    width: 13,
+                                  ),
+                                  Text(
+                                    "A",
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 34),
+                                  ),
+                                ],
+                              ),
+                              const Text(
+                                "UNIVERSIDAD PERUANA LOS ANDES",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  color: kPrimaryColor,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 7,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          closeSession();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: kPrimaryColor,
-                          shadowColor: Colors.transparent,
-                          padding: const EdgeInsets.only(top: 10, bottom: 10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: const Icon(
-                          Icons.power_settings_new,
-                          color: Colors.white,
-                        ),
-                      ),
+
+                      // ElevatedButton(
+                      //   onPressed: () {
+                      //     closeSession();
+                      //   },
+                      //   style: ElevatedButton.styleFrom(
+                      //     primary: kPrimaryColor,
+                      //     shadowColor: Colors.transparent,
+                      //     padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      //     shape: RoundedRectangleBorder(
+                      //       borderRadius: BorderRadius.circular(12),
+                      //     ),
+                      //   ),
+                      //   child: const Icon(
+                      //     Icons.power_settings_new,
+                      //     color: Colors.white,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
