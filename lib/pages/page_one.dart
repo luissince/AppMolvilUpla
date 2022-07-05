@@ -587,6 +587,14 @@ class _PageOneState extends State<PageOne> {
                     ),
                   ),
                 ),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                )
               ],
             ),
           ),
