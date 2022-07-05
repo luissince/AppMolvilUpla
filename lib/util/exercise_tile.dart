@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/constants.dart';
 
 class ExerciseTile extends StatelessWidget {
+  final int index;
   final IconData icon;
   final String exerciseName;
   final String fechaVencimiento;
@@ -12,6 +14,7 @@ class ExerciseTile extends StatelessWidget {
 
   const ExerciseTile(
       {Key? key,
+      required this.index,
       required this.icon,
       required this.exerciseName,
       required this.fechaVencimiento,
@@ -24,90 +27,75 @@ class ExerciseTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 25.0),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-            border: Border.all(
-                width: 1, color: const Color.fromARGB(255, 234, 234, 234)),
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              flex: 2,
-              child: Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      color: color,
-                      child: Icon(
-                        icon,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          exerciseName,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          fechaVencimiento,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey,
-                              fontSize: 14),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+    print(key);
+    return Container(
+      margin: EdgeInsets.only(bottom: index.toDouble()),
+      padding: const EdgeInsets.all(10),
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: kPrimaryLightColor, borderRadius: BorderRadius.circular(10)),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.attach_money,
+            color: Colors.black,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  exerciseName,
+                  style: const TextStyle(color: kPrimaryColor, fontSize: 13),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  fechaVencimiento,
+                  style: const TextStyle(
+                      color: kPrimaryColor,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 13),
+                )
+              ],
             ),
-            Expanded(
-              flex: 1,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    "$simbolo $importe",
-                    style: const TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.normal),
-                  ),
-                  Text(
-                    "$simbolo $mora",
-                    style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.red),
-                  ),
-                  Text(
-                    "$simbolo $subtotal",
-                    style: const TextStyle(
-                        fontSize: 17, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  "$simbolo $importe",
+                  style: const TextStyle(
+                      fontSize: 13, fontWeight: FontWeight.w400),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "$simbolo $mora",
+                  style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.red),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "$simbolo $subtotal",
+                  style: const TextStyle(
+                      fontSize: 15, fontWeight: FontWeight.w900),
+                )
+              ],
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

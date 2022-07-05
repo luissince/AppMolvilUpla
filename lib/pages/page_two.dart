@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert' as convert;
 
+import 'package:flutter_demo/components/activity_indicator.dart';
+import 'package:flutter_demo/pages/background.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/model/Pagos.dart';
@@ -12,6 +14,7 @@ import 'package:flutter_demo/redux/studen.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_demo/constants.dart';
+import '../util/exercise_tile.dart';
 
 class PageTwo extends StatefulWidget {
   final Store<AppState> store;
@@ -23,6 +26,7 @@ class PageTwo extends StatefulWidget {
 
 class _PageTwoState extends State<PageTwo> {
   bool loading = false;
+  double sumaTotal = 0;
   List<Pagos> listPagos = [];
 
   @override
@@ -34,233 +38,215 @@ class _PageTwoState extends State<PageTwo> {
   @override
   void dispose() {
     super.dispose();
-    print("close widget");
   }
 
   @override
   Widget build(BuildContext context) {
     // print(widget.store.state.student.token);
     Size size = MediaQuery.of(context).size;
-    return RefreshIndicator(
-      onRefresh: () async {
-        loadCuotasPensiones();
-      },
-      child: SingleChildScrollView(
-        child: IntrinsicHeight(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //TITULO
-                Container(
-                  margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                  padding: const EdgeInsets.only(
-                      left: 10, right: 10, top: 20, bottom: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          SvgPicture.asset(
-                            "assets/images/logo_only.svg",
-                            height: size.height * 0.14,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Text(
-                                    "U",
-                                    style: TextStyle(
-                                        color: kPrimaryColor,
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 34),
-                                  ),
-                                  SizedBox(
-                                    width: 13,
-                                  ),
-                                  Text(
-                                    "P",
-                                    style: TextStyle(
-                                        color: kPrimaryColor,
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 34),
-                                  ),
-                                  SizedBox(
-                                    width: 13,
-                                  ),
-                                  Text(
-                                    "L",
-                                    style: TextStyle(
-                                        color: kPrimaryColor,
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 34),
-                                  ),
-                                  SizedBox(
-                                    width: 13,
-                                  ),
-                                  Text(
-                                    "A",
-                                    style: TextStyle(
-                                        color: kPrimaryColor,
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 34),
-                                  ),
-                                ],
-                              ),
-                              const Text(
-                                "UNIVERSIDAD PERUANA LOS ANDES",
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 7,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-
-                      // ElevatedButton(
-                      //   onPressed: () {
-                      //     closeSession();
-                      //   },
-                      //   style: ElevatedButton.styleFrom(
-                      //     primary: kPrimaryColor,
-                      //     shadowColor: Colors.transparent,
-                      //     padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      //     shape: RoundedRectangleBorder(
-                      //       borderRadius: BorderRadius.circular(12),
-                      //     ),
-                      //   ),
-                      //   child: const Icon(
-                      //     Icons.power_settings_new,
-                      //     color: Colors.white,
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                ),
-
-                //SELECCIÓN ALUMNO
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  child: const Text(
-                    "CONSULTA DE ESTADO DE DEUDA",
-                    style: TextStyle(
-                        color: Color.fromRGBO(155, 166, 175, 1),
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Container(
-                  height: 300,
-                  margin: const EdgeInsets.only(left: 10, right: 10),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                color: Colors.lightBlue[100],
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: const [
-                                Text(
-                                  "Upcomming",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 12),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "4",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "exams",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 12),
-                                )
-                              ],
+    return Background(
+      child: SafeArea(
+        child: SingleChildScrollView(
+          child: IntrinsicHeight(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //TITULO
+                  Container(
+                    margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                    padding: const EdgeInsets.only(
+                        left: 10, right: 10, top: 20, bottom: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              "assets/images/logo_only.svg",
+                              height: size.height * 0.14,
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                color: Colors.orange,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
                               children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    Text(
+                                      "U",
+                                      style: TextStyle(
+                                          color: kPrimaryColor,
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 34),
+                                    ),
+                                    SizedBox(
+                                      width: 13,
+                                    ),
+                                    Text(
+                                      "P",
+                                      style: TextStyle(
+                                          color: kPrimaryColor,
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 34),
+                                    ),
+                                    SizedBox(
+                                      width: 13,
+                                    ),
+                                    Text(
+                                      "L",
+                                      style: TextStyle(
+                                          color: kPrimaryColor,
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 34),
+                                    ),
+                                    SizedBox(
+                                      width: 13,
+                                    ),
+                                    Text(
+                                      "A",
+                                      style: TextStyle(
+                                          color: kPrimaryColor,
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 34),
+                                    ),
+                                  ],
+                                ),
                                 const Text(
-                                  "Homework",
+                                  "UNIVERSIDAD PERUANA LOS ANDES",
+                                  textAlign: TextAlign.left,
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 12),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.all(20),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                        width: 1, color: Colors.white),
-                                  ),
-                                  child: const Text(
-                                    "73%",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 24),
+                                    color: kPrimaryColor,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 7,
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                const Text(
-                                  "completed",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 12),
-                                )
                               ],
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+
+                  //SUMA TOTAL
+                  Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 10),
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              bottom:
+                                  BorderSide(color: kPrimaryColor, width: 2),
+                            ),
+                          ),
+                          child: const Text(
+                            "TOTAL DE DEUDA",
+                            style: TextStyle(
+                                fontSize: 13, fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Expanded(
+                              child: Text(
+                                "Suma Total:",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: Text(
+                                "S/ ${sumaTotal.toStringAsFixed(2)}",
+                                // "S/ ${sumaTotal}",
+                                textAlign: TextAlign.right,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  //LISTA DE CUOTAS
+                  Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 10),
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              bottom:
+                                  BorderSide(color: kPrimaryColor, width: 2),
+                            ),
+                          ),
+                          child: const Text(
+                            "CUOTAS DE PENSIÓN ACADÉMICA",
+                            style: TextStyle(
+                                fontSize: 13, fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                        loading
+                            ? const Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Center(child: ActivityIndicator()),
+                              )
+                            : Column(
+                                children: listPagos.map(
+                                  (pago) {
+                                    return ExerciseTile(
+                                      index:
+                                          pago.key != listPagos.length ? 10 : 0,
+                                      icon: Icons.info,
+                                      exerciseName: pago.descripcion,
+                                      fechaVencimiento: pago.fecVenc,
+                                      simbolo: pago.tm,
+                                      importe: pago.importe,
+                                      mora: pago.mora,
+                                      subtotal: pago.subtotal,
+                                      color: Colors.orange,
+                                    );
+                                  },
+                                ).toList(),
+                              ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -293,10 +279,15 @@ class _PageTwoState extends State<PageTwo> {
 
       if (response.statusCode == 200) {
         var jsonData = convert.jsonDecode(response.body);
+        int count = 0;
+        sumaTotal = 0;
         for (var u in jsonData) {
+          count++;
+          sumaTotal += u["subtotal"];
           setState(() {
             listPagos.add(
               Pagos(
+                count,
                 u["descripcion"],
                 u["fecVenc"],
                 u["tm"],

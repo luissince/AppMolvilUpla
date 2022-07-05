@@ -1,4 +1,5 @@
 class Pagos {
+  int key;
   String descripcion;
   String fecVenc;
   String tm;
@@ -7,6 +8,6 @@ class Pagos {
   double subtotal;
   String obs;
 
-  Pagos(this.descripcion, this.fecVenc, this.tm, this.importe, this.mora,
-      this.subtotal, this.obs);
+  Pagos(this.key, this.descripcion, this.fecVenc, this.tm, this.importe,
+      this.mora, this.subtotal, this.obs);
 }
