@@ -156,7 +156,9 @@ class _BodyDesktopState extends State<BodyDesktop> {
                       * 
                       */
                       loading
-                          ? const ActivityIndicator()
+                          ? const ActivityIndicator(
+                              color: kPrimaryColor,
+                            )
                           : const SizedBox(height: 0),
                       const SizedBox(height: 10),
                       /** 

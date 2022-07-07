@@ -14,7 +14,6 @@ import 'package:flutter_demo/redux/studen.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_demo/constants.dart';
-import '../util/exercise_tile.dart';
 
 class PageTwo extends StatefulWidget {
   final Store<AppState> store;
@@ -47,206 +46,247 @@ class _PageTwoState extends State<PageTwo> {
     return Background(
       child: SafeArea(
         child: SingleChildScrollView(
-          child: IntrinsicHeight(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //TITULO
-                  Container(
-                    margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 10, top: 20, bottom: 20),
-                    decoration: BoxDecoration(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /**
+                       * 
+                       */
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: const BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              "assets/images/logo_only.svg",
-                              height: size.height * 0.14,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Text(
-                                      "U",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 34),
-                                    ),
-                                    SizedBox(
-                                      width: 13,
-                                    ),
-                                    Text(
-                                      "P",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 34),
-                                    ),
-                                    SizedBox(
-                                      width: 13,
-                                    ),
-                                    Text(
-                                      "L",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 34),
-                                    ),
-                                    SizedBox(
-                                      width: 13,
-                                    ),
-                                    Text(
-                                      "A",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 34),
-                                    ),
-                                  ],
-                                ),
-                                const Text(
-                                  "UNIVERSIDAD PERUANA LOS ANDES",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 7,
+                        shape: BoxShape.circle,
+                      ),
+                      child: SvgPicture.asset(
+                        "assets/images/logo_only.svg",
+                        height: size.height * 0.08,
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      width: size.height * 0.08,
+                      height: size.height * 0.08,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            image: NetworkImage(
+                                "https://academico.upla.edu.pe/FotosAlum/037000${widget.store.state.student.docNumId}.jpg"),
+                            fit: BoxFit.contain),
+                      ),
+                    ),
+                  ],
+                ),
+
+                /**
+                       * 
+                       */
+                Container(
+                  margin: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: const Text(
+                    "Total de Deuda",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+
+                /**
+                       * 
+                       */
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      /**
+                             * 
+                             */
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const Text(
+                                    "S/",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 29,
+                                        fontWeight: FontWeight.w700),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  //SUMA TOTAL
-                  Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 10),
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom:
-                                  BorderSide(color: kPrimaryColor, width: 2),
-                            ),
-                          ),
-                          child: const Text(
-                            "TOTAL DE DEUDA",
-                            style: TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            const Expanded(
-                              child: Text(
-                                "Suma Total:",
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    sumaTotal.toStringAsFixed(2),
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 29,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ],
+                              ),
+                              const Text(
+                                "MONTO TOTAL",
                                 style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: Text(
-                                "S/ ${sumaTotal.toStringAsFixed(2)}",
-                                // "S/ ${sumaTotal}",
-                                textAlign: TextAlign.right,
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  //LISTA DE CUOTAS
-                  Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 10),
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom:
-                                  BorderSide(color: kPrimaryColor, width: 2),
-                            ),
-                          ),
-                          child: const Text(
-                            "CUOTAS DE PENSIÓN ACADÉMICA",
-                            style: TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                        loading
-                            ? const Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Center(child: ActivityIndicator()),
+                                    color: Colors.white,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w300),
                               )
-                            : Column(
-                                children: listPagos.map(
-                                  (pago) {
-                                    return ExerciseTile(
-                                      index:
-                                          pago.key != listPagos.length ? 10 : 0,
-                                      icon: Icons.info,
-                                      exerciseName: pago.descripcion,
-                                      fechaVencimiento: pago.fecVenc,
-                                      simbolo: pago.tm,
-                                      importe: pago.importe,
-                                      mora: pago.mora,
-                                      subtotal: pago.subtotal,
-                                      color: Colors.orange,
-                                    );
-                                  },
-                                ).toList(),
-                              ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
+
+                      /**
+                             * 
+                             */
+                      Container(
+                        margin: const EdgeInsets.only(top: 20, bottom: 20),
+                        child: const Text(
+                          "CONSULTA DE ESTADO DE DEUDA",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 11,
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                /**
+              * 
+              */
+
+                Container(
+                  margin: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: const Text(
+                    "CUOTAS DE PENSIÓN ACADÉMICA",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                ],
-              ),
+                ),
+                loading
+                    ? const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Center(
+                          child: ActivityIndicator(
+                            color: Colors.white,
+                          ),
+                        ),
+                      )
+                    : Column(
+                        children: listPagos.map(
+                          (pago) {
+                            return Container(
+                              margin: EdgeInsets.only(
+                                bottom: pago.key != listPagos.length ? 10 : 0,
+                              ),
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const Icon(
+                                    Icons.info,
+                                    size: 32,
+                                    color: Color.fromRGBO(252, 127, 167, 1),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          pago.descripcion,
+                                          style: const TextStyle(
+                                            color:
+                                                Color.fromRGBO(42, 49, 73, 1),
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          pago.fecVenc,
+                                          style: const TextStyle(
+                                            color:
+                                                Color.fromRGBO(42, 49, 73, 0.5),
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "S/ ${pago.importe}",
+                                        style: const TextStyle(
+                                          color: Color.fromRGBO(42, 49, 73, 1),
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "S/ ${pago.mora}",
+                                        style: const TextStyle(
+                                          color: Color.fromRGBO(253, 3, 6, 1),
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "S/ ${pago.subtotal}",
+                                        style: const TextStyle(
+                                          color: Color.fromRGBO(42, 49, 73, 1),
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                        ).toList(),
+                      ),
+              ],
             ),
           ),
         ),

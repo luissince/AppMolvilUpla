@@ -144,7 +144,11 @@ class _BodyMobileState extends State<BodyMobile> {
               /**
                * 
                */
-              loading ? const ActivityIndicator() : const SizedBox(height: 0),
+              loading
+                  ? const ActivityIndicator(
+                      color: kPrimaryColor,
+                    )
+                  : const SizedBox(height: 0),
               const SizedBox(height: 10),
 
               /**

@@ -35,6 +35,7 @@ class _PageOneState extends State<PageOne> {
   void initState() {
     super.initState();
     loadInformation();
+    print(widget.store);
 
     listRecord.add(Record("Ene", 100));
     listRecord.add(Record("Feb", 100));
@@ -58,7 +59,7 @@ class _PageOneState extends State<PageOne> {
       child: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -83,12 +84,12 @@ class _PageOneState extends State<PageOne> {
                       padding: const EdgeInsets.all(5),
                       width: size.height * 0.08,
                       height: size.height * 0.08,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
                         image: DecorationImage(
                             image: NetworkImage(
-                                'https://academico.upla.edu.pe/FotosAlum/037000r01655a.jpg'),
+                                "https://academico.upla.edu.pe/FotosAlum/037000${widget.store.state.student.docNumId}.jpg"),
                             fit: BoxFit.contain),
                       ),
                     ),
@@ -128,38 +129,45 @@ class _PageOneState extends State<PageOne> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: const [
-                                  Text(
-                                    "Rp",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 7,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    "29.890.781",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 29,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ],
-                              ),
-                              const Text(
-                                "CURRENT BALANCE",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w300),
-                              )
-                            ],
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        widget.store.state.student.persNombre,
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        "${widget.store.state.student.persPaterno} ${widget.store.state.student.persMaterno}",
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  "Código ${widget.store.state.student.docNumId}",
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w300),
+                                )
+                              ],
+                            ),
                           ),
                           Row(
                             children: const [
@@ -183,11 +191,11 @@ class _PageOneState extends State<PageOne> {
                              */
                       Container(
                         margin: const EdgeInsets.only(top: 20, bottom: 20),
-                        child: const Text(
-                          "ACTIVE CARD",
-                          style: TextStyle(
+                        child: Text(
+                          "PLAN DE ESTUDIOS $plan",
+                          style: const TextStyle(
                               color: Colors.white,
-                              fontSize: 11,
+                              fontSize: 13,
                               fontWeight: FontWeight.w700),
                         ),
                       ),
@@ -201,17 +209,17 @@ class _PageOneState extends State<PageOne> {
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
-                                  "CARD NAME",
+                              children: [
+                                const Text(
+                                  "FACULTAD",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 11,
                                       fontWeight: FontWeight.w300),
                                 ),
                                 Text(
-                                  "Dara Adhelia",
-                                  style: TextStyle(
+                                  facultad,
+                                  style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 13,
                                       fontWeight: FontWeight.w700),
@@ -222,17 +230,17 @@ class _PageOneState extends State<PageOne> {
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
-                                  "TYPE CARD",
+                              children: [
+                                const Text(
+                                  "CARR./ ESP",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 11,
                                       fontWeight: FontWeight.w300),
                                 ),
                                 Text(
-                                  "Gold",
-                                  style: TextStyle(
+                                  carrera,
+                                  style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 13,
                                       fontWeight: FontWeight.w700),
@@ -589,12 +597,184 @@ class _PageOneState extends State<PageOne> {
                 ),
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(20),
+                  // padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                )
+                  child: IntrinsicHeight(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  Icons.calendar_today,
+                                  color: Colors.white.withOpacity(0.5),
+                                ),
+                                Text(
+                                  "16",
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.5),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  "Jun",
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.5),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  "2019",
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.5),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        VerticalDivider(
+                          color:
+                              Colors.white.withOpacity(0.5), //color of divider
+                          width: 0,
+                          thickness: 2,
+                          indent: 10,
+                          endIndent: 10, //Spacing at the bottom of divider.
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  Icons.calendar_today,
+                                  color: Colors.white.withOpacity(0.5),
+                                ),
+                                Text(
+                                  "16",
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.5),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  "Jun",
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.5),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  "2019",
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.5),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+
+                /**
+               * 
+               */
+                Container(
+                  margin: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: const Text(
+                    "16 June 2019",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        Icons.arrow_circle_right_rounded,
+                        size: 32,
+                        color: Color.fromRGBO(252, 127, 167, 1),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Transfer E-Banking DB to Trinusa",
+                              style: TextStyle(
+                                color: Color.fromRGBO(42, 49, 73, 1),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const Text(
+                              "Travelindo",
+                              style: TextStyle(
+                                color: Color.fromRGBO(42, 49, 73, 1),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: const [
+                                Text(
+                                  "09: 19 PM",
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(42, 49, 73, 0.5),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  "Rp 4.500.000",
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(42, 49, 73, 1),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
