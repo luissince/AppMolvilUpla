@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void sleepWidget() {
     Future.delayed(
-      const Duration(seconds: 5),
+      const Duration(seconds: 3),
       () async {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         if (prefs.getString("token") != null) {
