@@ -11,8 +11,6 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/Screens/Login/components/background.dart';
-import 'package:flutter_demo/Screens/Signup/signup_screen.dart';
-import 'package:flutter_demo/components/already_have_an_account_acheck.dart';
 import 'package:flutter_demo/components/alert.dart';
 import 'package:flutter_demo/components/rounded_button.dart';
 import 'package:flutter_demo/components/rounded_input_field.dart';
@@ -137,7 +135,7 @@ class _BodyMobileState extends State<BodyMobile> {
                * 
                */
               SvgPicture.asset(
-                "assets/icons/login.svg",
+                "assets/images/logo_only.svg",
                 height: size.height * 0.30,
               ),
               const SizedBox(height: 10),

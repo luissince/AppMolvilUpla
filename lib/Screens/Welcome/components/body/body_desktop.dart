@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/Screens/Login/components/background.dart';
-import 'package:flutter_demo/Screens/Login/login_screen.dart';
-import 'package:flutter_demo/Screens/Signup/signup_screen.dart';
 import 'package:flutter_demo/components/rounded_button.dart';
 import 'package:flutter_demo/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,8 +24,8 @@ class BodyDesktop extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: SvgPicture.asset(
-                  "assets/icons/chat.svg",
-                  height: size.height * 0.65,
+                  "assets/images/logo_only.svg",
+                  height: size.height * 0.55,
                 ),
               ),
 
@@ -129,7 +127,7 @@ class BodyDesktop extends StatelessWidget {
                                       width: 10,
                                     ),
                                     Text(
-                                      "TIEMPO",
+                                      "TIEMPOS",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color: kPrimaryColor,

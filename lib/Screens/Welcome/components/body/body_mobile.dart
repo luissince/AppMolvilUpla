@@ -27,8 +27,8 @@ class BodyMobile extends StatelessWidget {
                    * 
                    */
                   SvgPicture.asset(
-                    "assets/icons/chat.svg",
-                    height: size.height * 0.45,
+                    "assets/images/logo_only.svg",
+                    height: size.height * 0.25,
                   ),
                   /**
                    * 
@@ -120,7 +120,7 @@ class BodyMobile extends StatelessWidget {
                                     width: 10,
                                   ),
                                   Text(
-                                    "TIEMPO",
+                                    "TIEMPOS",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: kPrimaryColor,

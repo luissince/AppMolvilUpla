@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_demo/constants.dart';
-import 'package:flutter_demo/pages/page_one.dart';
 import 'package:flutter_demo/pages/routers.dart';
 import 'package:flutter_demo/redux/app_state.dart';
 import 'package:redux/redux.dart';
@@ -57,6 +56,8 @@ class HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'INICIO'),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_balance), label: 'FINANCIERO'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month), label: 'CALENDARIO'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'PERFIL'),
         ],
       ),

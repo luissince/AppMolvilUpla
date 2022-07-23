@@ -1,0 +1,107 @@
+ /**
+              * 
+              */
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      /**
+                    * 
+                    */
+                      Container(
+                        padding: const EdgeInsets.all(5),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              "assets/images/logo_only.svg",
+                              height: size.height * 0.08,
+                            ),
+                          ],
+                        ),
+                      ),
+                      /**
+                    * 
+                    */
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text(
+                                "U",
+                                style: TextStyle(
+                                    color: kPrimaryLightColor,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 34),
+                              ),
+                              SizedBox(
+                                width: 13,
+                              ),
+                              Text(
+                                "P",
+                                style: TextStyle(
+                                    color: kPrimaryLightColor,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 34),
+                              ),
+                              SizedBox(
+                                width: 13,
+                              ),
+                              Text(
+                                "L",
+                                style: TextStyle(
+                                    color: kPrimaryLightColor,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 34),
+                              ),
+                              SizedBox(
+                                width: 13,
+                              ),
+                              Text(
+                                "A",
+                                style: TextStyle(
+                                    color: kPrimaryLightColor,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 34),
+                              ),
+                            ],
+                          ),
+                          const Text(
+                            "UNIVERSIDAD PERUANA LOS ANDES",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: kPrimaryLightColor,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 7,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    width: size.height * 0.08,
+                    height: size.height * 0.08,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              "https://academico.upla.edu.pe/FotosAlum/037000${widget.store.state.student.docNumId}.jpg"),
+                          fit: BoxFit.contain),
+                    ),
+                  ),
+                ],
+              ),
+              /**
+              * 
+              */

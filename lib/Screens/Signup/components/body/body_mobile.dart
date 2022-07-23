@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/Screens/Login/login_screen.dart';
 import 'package:flutter_demo/Screens/Signup/components/background.dart';
-import 'package:flutter_demo/Screens/Signup/components/or_divider.dart';
-import 'package:flutter_demo/Screens/Signup/components/social_icon.dart';
 import 'package:flutter_demo/components/already_have_an_account_acheck.dart';
 import 'package:flutter_demo/components/rounded_button.dart';
 import 'package:flutter_demo/components/rounded_input_field.dart';

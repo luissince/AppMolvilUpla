@@ -13,7 +13,6 @@ import 'package:flutter_demo/redux/app_state.dart';
 import 'package:flutter_demo/redux/studen.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_demo/constants.dart';
 
 class PageTwo extends StatefulWidget {
   final Store<AppState> store;
@@ -52,8 +51,8 @@ class _PageTwoState extends State<PageTwo> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /**
-                       * 
-                       */
+                * 
+                */
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -85,8 +84,8 @@ class _PageTwoState extends State<PageTwo> {
                 ),
 
                 /**
-                       * 
-                       */
+                * 
+                */
                 Container(
                   margin: const EdgeInsets.only(top: 10, bottom: 10),
                   child: const Text(
@@ -99,8 +98,8 @@ class _PageTwoState extends State<PageTwo> {
                 ),
 
                 /**
-                       * 
-                       */
+                * 
+                */
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(20),
@@ -112,8 +111,8 @@ class _PageTwoState extends State<PageTwo> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       /**
-                             * 
-                             */
+                      * 
+                      */
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -154,8 +153,8 @@ class _PageTwoState extends State<PageTwo> {
                       ),
 
                       /**
-                             * 
-                             */
+                      * 
+                      */
                       Container(
                         margin: const EdgeInsets.only(top: 20, bottom: 20),
                         child: const Text(
@@ -169,14 +168,14 @@ class _PageTwoState extends State<PageTwo> {
                     ],
                   ),
                 ),
-                /**
-              * 
-              */
 
+                /**
+                * 
+                */
                 Container(
                   margin: const EdgeInsets.only(top: 10, bottom: 10),
                   child: const Text(
-                    "CUOTAS DE PENSIÓN ACADÉMICA",
+                    "Cuotas de Pensión Académica",
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w500,

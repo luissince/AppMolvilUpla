@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_calendar/clean_calendar_event.dart';
+import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
+import 'package:flutter_demo/components/activity_indicator.dart';
 import 'package:flutter_demo/constants.dart';
 import 'package:flutter_demo/pages/background.dart';
-import 'package:flutter_demo/pages/perfil/card_perfil.dart';
-import 'package:flutter_demo/redux/actions_user.dart';
 import 'package:flutter_demo/redux/app_state.dart';
-import 'package:flutter_demo/redux/studen.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:redux/redux.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PageTree extends StatefulWidget {
   final Store<AppState> store;
@@ -18,294 +17,116 @@ class PageTree extends StatefulWidget {
 }
 
 class _PageTreeState extends State<PageTree> {
+  bool loading = false;
+  bool responseOk = false;
+
+  DateTime selectedDay = DateTime.now();
+  List<CleanCalendarEvent> selectedEvent = [];
+
+  final Map<DateTime, List<CleanCalendarEvent>> events = {
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day): [
+      CleanCalendarEvent('Event A',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day, 10, 0),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day, 12, 0),
+          description: 'A special event',
+          color: Colors.blue),
+    ],
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 2):
+        [
+      CleanCalendarEvent('Event B',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 10, 0),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 12, 0),
+          color: Colors.orange),
+      CleanCalendarEvent('Event C',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 14, 30),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 17, 0),
+          color: Colors.pink),
+      CleanCalendarEvent('Event D',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 14, 30),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 17, 0),
+          color: Colors.green),
+      CleanCalendarEvent('Event E',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 14, 30),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 17, 0),
+          color: Colors.purple),
+      CleanCalendarEvent('Event F',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 14, 30),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 17, 0),
+          color: Colors.purple),
+      CleanCalendarEvent('Event G',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 14, 30),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 17, 0),
+          color: Colors.purple),
+    ],
+  };
+
+  @override
+  void initState() {
+    selectedEvent = events[selectedDay] ?? [];
+    super.initState();
+  }
+
+  void _handleData(date) {
+    setState(() {
+      selectedDay = date;
+      selectedEvent = events[selectedDay] ?? [];
+    });
+    print(selectedDay);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Background(
       child: SafeArea(
-        child: SingleChildScrollView(
-          child: IntrinsicHeight(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Column(
-                children: [
-                  //TITULO
-                  Container(
-                    margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 10, top: 20, bottom: 20),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              "assets/images/logo_only.svg",
-                              height: size.height * 0.14,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Text(
-                                      "U",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 34),
-                                    ),
-                                    SizedBox(
-                                      width: 13,
-                                    ),
-                                    Text(
-                                      "P",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 34),
-                                    ),
-                                    SizedBox(
-                                      width: 13,
-                                    ),
-                                    Text(
-                                      "L",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 34),
-                                    ),
-                                    SizedBox(
-                                      width: 13,
-                                    ),
-                                    Text(
-                                      "A",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 34),
-                                    ),
-                                  ],
-                                ),
-                                const Text(
-                                  "UNIVERSIDAD PERUANA LOS ANDES",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 7,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  /**
-                   * 
-                   */
-                  Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 10, top: 20, bottom: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 10),
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom:
-                                  BorderSide(color: kPrimaryColor, width: 2),
-                            ),
-                          ),
-                          child: const Text(
-                            "PERFIL",
-                            style: TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              "assets/icons/perfil.svg",
-                              width: 80,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-
-                  /**
-                   * 
-                   */
-                  Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 10, top: 20, bottom: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 10),
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom:
-                                  BorderSide(color: kPrimaryColor, width: 2),
-                            ),
-                          ),
-                          child: const Text(
-                            "DATOS PERSONALES",
-                            style: TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                        /**
-                       * 
-                       */
-                        CardPerfil(title: "Código", description: "R01655A"),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        /**
-                       * 
-                       */
-                        CardPerfil(
-                            title: "Nombres", description: "ANTONELLA MIDHEI"),
-                        SizedBox(
-                          height: 10,
-                        ),
-
-                        /**
-                       * 
-                       */
-                        CardPerfil(
-                            title: "Apellido Paterno",
-                            description: "GUTIERREZ"),
-                        SizedBox(
-                          height: 10,
-                        ),
-
-                        /**
-                       * 
-                       */
-                        CardPerfil(
-                            title: "Apellido Materno", description: "QUISPE"),
-                        SizedBox(
-                          height: 10,
-                        ),
-
-                        /**
-                       * 
-                       */
-                        CardPerfil(title: "DNI", description: "76759222"),
-                        SizedBox(
-                          height: 10,
-                        ),
-
-                        /**
-                       * 
-                       */
-                        CardPerfil(
-                            title: "Fecha de nacimiento",
-                            description: "23/11/2003"),
-                        SizedBox(
-                          height: 10,
-                        ),
-
-                        /**
-                       * 
-                       */
-                        CardPerfil(title: "Edad", description: "18"),
-                        SizedBox(
-                          height: 10,
-                        ),
-
-                        /**
-                       * 
-                       */
-                        CardPerfil(
-                            title: "Estado civil", description: "Soltero"),
-                      ],
-                    ),
-                  ),
-
-                  /**
-                   * 
-                   */
-                  Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 10, top: 10, bottom: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        closeSession();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: kPrimaryColor,
-                        shadowColor: Colors.transparent,
-                        padding: const EdgeInsets.only(top: 10, bottom: 10),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            Icons.power_settings_new,
-                            color: Colors.white,
-                          ),
-                          Text("Cerrar Sesión")
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Calendar(
+            todayButtonText: 'Hoy es',
+            locale: 'es_ES',
+            startOnMonday: true,
+            selectedColor: Colors.blue,
+            todayColor: Color.fromARGB(255, 250, 250, 250),
+            eventColor: Color.fromARGB(255, 243, 0, 0),
+            eventDoneColor: Colors.amber,
+            bottomBarColor: Colors.deepOrange,
+            onRangeSelected: (range) {
+              print('selected Day ${range.from},${range.to}');
+            },
+            onDateSelected: (date) {
+              return _handleData(date);
+            },
+            events: events,
+            isExpanded: true,
+            dayOfWeekStyle: TextStyle(
+              fontSize: 15,
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
             ),
+            bottomBarTextStyle: TextStyle(
+              color: Colors.white,
+            ),
+            hideBottomBar: false,
+            hideArrows: false,
+            weekDays: ['Lun', 'Mar', 'Mir', 'Jue', 'Vir', 'Sab', 'Dom'],
           ),
         ),
       ),
     );
-  }
-
-  void closeSession() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.clear();
-
-    widget.store.dispatch(SignOut(false, true, Student("", "", "", "", "")));
-
-    navigationLogin();
-  }
-
-  void navigationLogin() {
-    Navigator.pushReplacementNamed(context, "/login");
   }
 }
